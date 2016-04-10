@@ -1,0 +1,49 @@
+CREATE TABLE `RatingsORG` (
+  `USERS` int(11) DEFAULT NULL,
+  `StarWars` varchar(45) DEFAULT NULL,
+  `Spotlight` varchar(45) DEFAULT NULL,
+  `Rocky` varchar(45) DEFAULT NULL,
+  `Mad Max: Fury Road` varchar(45) DEFAULT NULL,
+  `Kung Fu Panda 3` varchar(45) DEFAULT NULL,
+  `Despicable Me` varchar(45) DEFAULT NULL,
+  `Big Hero 6` varchar(45) DEFAULT NULL,
+  `The hungover` varchar(45) DEFAULT NULL,
+  `Inside out` varchar(45) DEFAULT NULL,
+  `The big short` varchar(45) DEFAULT NULL,
+  `Almost famous` varchar(45) DEFAULT NULL,
+  `The hunger games` varchar(45) DEFAULT NULL,
+  `Pulp Fiction` varchar(45) DEFAULT NULL,
+  `Inglourious Basterds` varchar(45) DEFAULT NULL,
+  `The usual suspects` varchar(45) DEFAULT NULL,
+  `Mamma mia` varchar(45) DEFAULT NULL,
+  `Frozen` varchar(45) DEFAULT NULL,
+  `Legally blonde` varchar(45) DEFAULT NULL,
+  `Silver Linings` varchar(45) DEFAULT NULL,
+  `Twilight` varchar(45) DEFAULT NULL,
+  `Bridget Jones Diary` varchar(45) DEFAULT NULL,
+  `Gone girl` varchar(45) DEFAULT NULL,
+  `The matrix` varchar(45) DEFAULT NULL,
+  `Alien` varchar(45) DEFAULT NULL,
+  `2001: A space Odyssey` varchar(45) DEFAULT NULL,
+  `The godfather` varchar(45) DEFAULT NULL,
+  `Pretty woman` varchar(45) DEFAULT NULL,
+  `Room` varchar(45) DEFAULT NULL,
+  `Spy` varchar(45) DEFAULT NULL,
+  `The Intern` varchar(45) DEFAULT NULL,
+  `Zootopia` varchar(45) DEFAULT NULL,
+  `MI` varchar(45) DEFAULT NULL,
+  `The martian` varchar(45) DEFAULT NULL,
+  `The Danish Girl` varchar(45) DEFAULT NULL,
+  `X-men` varchar(45) DEFAULT NULL,
+  `Captain America` varchar(45) DEFAULT NULL,
+  `Focus` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+LOAD DATA INFILE 'path to /<NAME OF CSV>.csv' 
+INTO TABLE RatingsORG 
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
