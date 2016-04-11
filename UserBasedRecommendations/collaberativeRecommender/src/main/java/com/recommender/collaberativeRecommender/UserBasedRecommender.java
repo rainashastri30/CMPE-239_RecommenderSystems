@@ -23,7 +23,7 @@ public class UserBasedRecommender {
 		DataModel model;
 		try {
 
-			model = new FileDataModel(new File("/Users/rainashastri/Desktop/239/mahout-org-csv.csv"));
+			model = new FileDataModel(new File("data/mahout-org-csv.csv"));
 
 			UserSimilarity similarity = new PearsonCorrelationSimilarity(model);
 

@@ -27,7 +27,7 @@ import org.apache.mahout.common.RandomUtils;
 
 public class Evaluator {
 
-	public static String recsFile = "/Users/rainashastri/Desktop/239/mahout-pre_processed-csv.csv";
+	public static String recsFile = "data/mahout-pre_processed-csv.csv";
 
 	public void createPearsonCoefficientWithNNN(final int nearestNeighbour) {
 		RecommenderBuilder userSimRecBuilder = new RecommenderBuilder() {

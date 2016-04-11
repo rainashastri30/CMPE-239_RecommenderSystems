@@ -17,10 +17,12 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;*/
 public class ConvertToCSV {
-	public static final String QUERY = "select * from RatingsORG";
+	public static final String QUERY = "select * from RatingsPreProcessed";
+	//public static final String QUERY = "select * from RatingsORG";
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost/testOne";
-	static final String FILE_NAME = "/Users/rainashastri/Desktop/239/mahout-org-csv.csv";
+	static final String FILE_NAME = "data/mahout-pre_processed-csv.csv";
+	//static final String FILE_NAME = "data/mahout-org-csv.csv";
 	public static final String COMMA_DELIMITER = ",";
 	public static final String NEW_LINE_SEPARATOR = "\n";
 
