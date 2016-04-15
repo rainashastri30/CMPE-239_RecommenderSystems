@@ -27,6 +27,29 @@ public class EvaluatorMain {
 		eval.createPearsonCoefficientWithThreshold(0.9);
 		System.out.println("====================================================================================");
 
+		eval.createUncenteredCosineWithNNN(3);
+		System.out.println("====================================================================================");
+		eval.createUncenteredCosineWithNNN(4);
+		System.out.println("====================================================================================");
+		eval.createUncenteredCosineWithNNN(5);
+		System.out.println("====================================================================================");
+		eval.createUncenteredCosineWithNNN(7);
+		System.out.println("====================================================================================");
+		eval.createUncenteredCosineWithNNN(10);
+		System.out.println("====================================================================================");
+
+		eval.createUncenteredCosineWithThreshold(0.1);
+		System.out.println("====================================================================================");
+		eval.createUncenteredCosineWithThreshold(0.3);
+		System.out.println("====================================================================================");
+		eval.createUncenteredCosineWithThreshold(0.5);
+		System.out.println("====================================================================================");
+		eval.createUncenteredCosineWithThreshold(0.7);
+		System.out.println("====================================================================================");
+		eval.createUncenteredCosineWithThreshold(0.9);
+		System.out.println("====================================================================================");
+
+		
 		eval.createLogLikeliHoodWithNNN(3);
 		System.out.println("====================================================================================");
 		eval.createLogLikeliHoodWithNNN(4);

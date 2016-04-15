@@ -18,6 +18,7 @@ import org.apache.mahout.cf.taste.impl.neighborhood.ThresholdUserNeighborhood;
 import org.apache.mahout.cf.taste.impl.recommender.GenericUserBasedRecommender;
 import org.apache.mahout.cf.taste.impl.similarity.LogLikelihoodSimilarity;
 import org.apache.mahout.cf.taste.impl.similarity.PearsonCorrelationSimilarity;
+import org.apache.mahout.cf.taste.impl.similarity.UncenteredCosineSimilarity;
 import org.apache.mahout.cf.taste.model.DataModel;
 import org.apache.mahout.cf.taste.neighborhood.UserNeighborhood;
 import org.apache.mahout.cf.taste.recommender.IDRescorer;
@@ -27,7 +28,7 @@ import org.apache.mahout.common.RandomUtils;
 
 public class Evaluator {
 
-	public static String recsFile = "data/mahout-pre_processed-csv.csv";
+	public static String recsFile = "data/mahout-new-users-org-csv.csv";
 
 	public void createPearsonCoefficientWithNNN(final int nearestNeighbour) {
 		RecommenderBuilder userSimRecBuilder = new RecommenderBuilder() {
@@ -123,5 +124,45 @@ public class Evaluator {
 				"LogLikelihoodSimilarity ----- ThresholdUserNeighborhood (" + threshold + ") -----MAE ---> SCORE: "
 						+ evaluate(userSimRecBuilder, new AverageAbsoluteDifferenceRecommenderEvaluator()));
 
+	}
+
+	public void createUncenteredCosineWithNNN(final int nearestNeighbour) {
+		RecommenderBuilder userSimRecBuilder = new RecommenderBuilder() {
+			public Recommender buildRecommender(DataModel model) throws TasteException {
+
+				UserSimilarity userSimilarity = new UncenteredCosineSimilarity(model);
+				UserNeighborhood neighborhood = new NearestNUserNeighborhood(nearestNeighbour, userSimilarity, model);
+
+				Recommender recommender = new GenericUserBasedRecommender(model, neighborhood, userSimilarity);
+				return recommender;
+			}
+		};
+
+		System.out.println("UncenteredCosineSimilarity ----- NearestNUserNeighborhood (" + nearestNeighbour
+				+ ") -----RMSE ---> SCORE: " + evaluate(userSimRecBuilder, new RMSRecommenderEvaluator()));
+		System.out.println("UncenteredCosineSimilarity ----- NearestNUserNeighborhood (" + nearestNeighbour
+				+ ") -----MAE ---> SCORE: "
+				+ evaluate(userSimRecBuilder, new AverageAbsoluteDifferenceRecommenderEvaluator()));
+		
+	}
+
+	public void createUncenteredCosineWithThreshold(final double threshold) {
+		RecommenderBuilder userSimRecBuilder = new RecommenderBuilder() {
+			public Recommender buildRecommender(DataModel model) throws TasteException {
+
+				UserSimilarity userSimilarity = new UncenteredCosineSimilarity(model);
+				UserNeighborhood neighborhood = new ThresholdUserNeighborhood(threshold, userSimilarity, model);
+
+				Recommender recommender = new GenericUserBasedRecommender(model, neighborhood, userSimilarity);
+				return recommender;
+			}
+		};
+
+		System.out.println("UncenteredCosineSimilarity ----- ThresholdUserNeighborhood (" + threshold
+				+ ") -----RMSE ---> SCORE: " + evaluate(userSimRecBuilder, new RMSRecommenderEvaluator()));
+		System.out.println(
+				"UncenteredCosineSimilarity ----- ThresholdUserNeighborhood (" + threshold + ") -----MAE ---> SCORE: "
+						+ evaluate(userSimRecBuilder, new AverageAbsoluteDifferenceRecommenderEvaluator()));
+		
 	}
 }
