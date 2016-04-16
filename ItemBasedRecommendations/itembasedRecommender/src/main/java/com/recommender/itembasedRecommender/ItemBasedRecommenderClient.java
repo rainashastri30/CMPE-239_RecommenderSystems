@@ -1,4 +1,4 @@
-package com.recommender.collaberativeRecommender;
+package com.recommender.itembasedRecommender;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -85,7 +85,7 @@ import java.util.Scanner;
 					userMovieRatings.put("Spy", rs.getInt("Spy"));
 					userMovieRatings.put("The Intern", rs.getInt("The Intern"));
 					userMovieRatings.put("Zootopia", rs.getInt("Zootopia"));
-					userMovieRatings.put("MI", rs.getInt("MI"));
+					userMovieRatings.put("Mission Impossible", rs.getInt("Mission Impossible"));
 					userMovieRatings.put("The martian", rs.getInt("The martian"));
 					userMovieRatings.put("The Danish Girl", rs.getInt("The Danish Girl"));
 					userMovieRatings.put("X-men", rs.getInt("X-men"));

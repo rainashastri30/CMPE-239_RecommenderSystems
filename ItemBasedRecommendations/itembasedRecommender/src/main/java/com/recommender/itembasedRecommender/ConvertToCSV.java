@@ -1,5 +1,4 @@
-package com.recommender.collaberativeRecommender;
-
+package com.recommender.itembasedRecommender;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,23 +9,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.mahout.clustering.Model;
-
-/*
-LOAD DATA INFILE '/Users/rainashastri/Desktop/PRE-PROCESSED-CSV.csv' 
-INTO TABLE Ratings 
-FIELDS TERMINATED BY ',' 
-ENCLOSED BY '"'
-LINES TERMINATED BY '\n'
-IGNORE 1 ROWS;*/
-public class ConvertCSV {
-	//public static final String QUERY = "select * from RatingsNewUsersORG";
+public class ConvertToCSV {
+	// public static final String QUERY = "select * from RatingsNewUsersORG";
 	public static final String QUERY = "select * from RatingsPreProcessed";
-	//public static final String QUERY = "select * from RatingsORG";
+	// public static final String QUERY = "select * from RatingsORG";
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost/testOne";
 	static final String FILE_NAME = "data/test-preprocessed.csv";
-	//static final String FILE_NAME = "data/mahout-org-csv.csv";
+	// static final String FILE_NAME = "data/mahout-org-csv.csv";
 	public static final String COMMA_DELIMITER = ",";
 	public static final String NEW_LINE_SEPARATOR = "\n";
 

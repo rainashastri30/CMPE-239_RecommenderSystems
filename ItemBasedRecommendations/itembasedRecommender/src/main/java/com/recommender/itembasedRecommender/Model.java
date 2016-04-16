@@ -1,4 +1,4 @@
-package com.recommender.collaberativeRecommender;
+package com.recommender.itembasedRecommender;
 
 public class Model {
 

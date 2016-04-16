@@ -1,4 +1,4 @@
-package com.recommender.collaberativeRecommender;
+package com.recommender.itembasedRecommender;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +9,7 @@ public class DBConnection {
 
 	private static final String Driver = "com.mysql.jdbc.Driver";
 
-	private static final String ConnectionString = "jdbc:mysql://localhost/sys?useSSL=false";
+	private static final String ConnectionString = "jdbc:mysql://localhost/testOne?useSSL=false";
 
 	private static final String user = "root";
 
