@@ -16,7 +16,7 @@ import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
 import org.apache.mahout.cf.taste.impl.neighborhood.NearestNUserNeighborhood;
 import org.apache.mahout.cf.taste.impl.recommender.GenericUserBasedRecommender;
-import org.apache.mahout.cf.taste.impl.similarity.PearsonCorrelationSimilarity;
+import org.apache.mahout.cf.taste.impl.similarity.TanimotoCoefficientSimilarity;
 import org.apache.mahout.cf.taste.model.DataModel;
 import org.apache.mahout.cf.taste.neighborhood.UserNeighborhood;
 import org.apache.mahout.cf.taste.similarity.UserSimilarity;
@@ -28,8 +28,9 @@ public class ContentBasedRecommender {
 		DataModel model;
 		long similarMovies[] = new long[3];
 		try {
-			model = new FileDataModel(new File("data/content-based-mahout.csv"));
-			UserSimilarity similarity = new PearsonCorrelationSimilarity(model);
+			
+			model = new FileDataModel(new File("data/content-based-dataset.csv"));
+			UserSimilarity similarity = new TanimotoCoefficientSimilarity(model);
 			UserNeighborhood neighborhood = new NearestNUserNeighborhood(5, similarity, model);
 			GenericUserBasedRecommender recommender = new GenericUserBasedRecommender(model, neighborhood, similarity);
 			similarMovies = recommender.mostSimilarUserIDs(movieId, 10);
@@ -338,11 +339,11 @@ public class ContentBasedRecommender {
 					sum += rs.getInt("Zootopia");
 					userMovieList.add("Zootopia");
 				}
-				if (rs.getInt("MI") > 0) {
-					userMovieRatings.put("MI", rs.getInt("MI"));
+				if (rs.getInt("Mission Impossible") > 0) {
+					userMovieRatings.put("Mission Impossible", rs.getInt("Mission Impossible"));
 					++count;
-					sum += rs.getInt("MI");
-					userMovieList.add("MI");
+					sum += rs.getInt("Mission Impossible");
+					userMovieList.add("Mission Impossible");
 				}
 				if (rs.getInt("The martian") > 0) {
 					userMovieRatings.put("The martian", rs.getInt("The martian"));

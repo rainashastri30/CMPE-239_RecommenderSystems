@@ -23,9 +23,9 @@ import org.apache.mahout.common.RandomUtils;
 
 public class Evaluator {
 
-	public static String recsFile = "data/content-based-mahout.csv";
+	public static String recsFile = "data/content-based-dataset.csv";
 
-	public void createPearsonCoefficientWithNNN(final int nearestNeighbour) {
+	public void createPearsonCoefficientWithNNN(final int nearestNeighbour,final double split) {
 		RecommenderBuilder userSimRecBuilder = new RecommenderBuilder() {
 			public Recommender buildRecommender(DataModel model) throws TasteException {
 
@@ -38,13 +38,13 @@ public class Evaluator {
 		};
 
 		System.out.println("PearsonCorrelationSimilarity ----- NearestNUserNeighborhood (" + nearestNeighbour
-				+ ") -----RMSE ---> SCORE: " + evaluate(userSimRecBuilder, new RMSRecommenderEvaluator()));
+				+ ") ----- Split: "+split+ " RMSE ---> SCORE: " + evaluate(userSimRecBuilder, new RMSRecommenderEvaluator(),split));
 		System.out.println("PearsonCorrelationSimilarity ----- NearestNUserNeighborhood (" + nearestNeighbour
-				+ ") -----MAE ---> SCORE: "
-				+ evaluate(userSimRecBuilder, new AverageAbsoluteDifferenceRecommenderEvaluator()));
+				+ ")----- Split: "+split+ " MAE ---> SCORE: "
+				+ evaluate(userSimRecBuilder, new AverageAbsoluteDifferenceRecommenderEvaluator(),split));
 	}
 
-	private double evaluate(RecommenderBuilder userSimRecBuilder, RecommenderEvaluator evaluator) {
+	private double evaluate(RecommenderBuilder userSimRecBuilder, RecommenderEvaluator evaluator,double split) {
 		FileDataModel dataModel;
 
 		double userSimEvaluationScore = 0;
@@ -52,7 +52,7 @@ public class Evaluator {
 
 			dataModel = new FileDataModel(new File(recsFile));
 			RandomUtils.useTestSeed();
-			userSimEvaluationScore = evaluator.evaluate(userSimRecBuilder, null, dataModel, 0.9, 1.0);
+			userSimEvaluationScore = evaluator.evaluate(userSimRecBuilder, null, dataModel, split, 1.0);
 		} catch (TasteException e) {
 			e.printStackTrace();
 		} catch (IOException e1) {
@@ -61,7 +61,7 @@ public class Evaluator {
 		return userSimEvaluationScore;
 	}
 
-	public void createPearsonCoefficientWithThreshold(final double threshold) {
+	public void createPearsonCoefficientWithThreshold(final double threshold,final double split) {
 		RecommenderBuilder userSimRecBuilder = new RecommenderBuilder() {
 			public Recommender buildRecommender(DataModel model) throws TasteException {
 
@@ -74,14 +74,14 @@ public class Evaluator {
 		};
 
 		System.out.println("PearsonCorrelationSimilarity ----- ThresholdUserNeighborhood (" + threshold
-				+ ") -----RMSE ---> SCORE: " + evaluate(userSimRecBuilder, new RMSRecommenderEvaluator()));
+				+ ") ----- Split: "+split+ " RMSE ---> SCORE: " + evaluate(userSimRecBuilder, new RMSRecommenderEvaluator(),split));
 		System.out.println(
-				"PearsonCorrelationSimilarity ----- ThresholdUserNeighborhood (" + threshold + ") -----MAE ---> SCORE: "
-						+ evaluate(userSimRecBuilder, new AverageAbsoluteDifferenceRecommenderEvaluator()));
+				"PearsonCorrelationSimilarity ----- ThresholdUserNeighborhood (" + threshold + ") ----- Split: "+split+ " MAE ---> SCORE: "
+						+ evaluate(userSimRecBuilder, new AverageAbsoluteDifferenceRecommenderEvaluator(),split));
 
 	}
 
-	public void createLogLikeliHoodWithNNN(final int neighbour) {
+	public void createLogLikeliHoodWithNNN(final int neighbour, final double split) {
 		RecommenderBuilder userSimRecBuilder = new RecommenderBuilder() {
 			public Recommender buildRecommender(DataModel model) throws TasteException {
 
@@ -94,14 +94,14 @@ public class Evaluator {
 		};
 
 		System.out.println("LogLikelihoodSimilarity ----- NearestNUserNeighborhood (" + neighbour
-				+ ") -----RMSE ---> SCORE: " + evaluate(userSimRecBuilder, new RMSRecommenderEvaluator()));
+				+ ")----- Split: "+split+ " RMSE ---> SCORE: " + evaluate(userSimRecBuilder, new RMSRecommenderEvaluator(),split));
 		System.out.println(
-				"LogLikelihoodSimilarity ----- NearestNUserNeighborhood (" + neighbour + ") -----MAE ---> SCORE: "
-						+ evaluate(userSimRecBuilder, new AverageAbsoluteDifferenceRecommenderEvaluator()));
+				"LogLikelihoodSimilarity ----- NearestNUserNeighborhood (" + neighbour + ") ----- Split: "+split+ " MAE ---> SCORE: "
+						+ evaluate(userSimRecBuilder, new AverageAbsoluteDifferenceRecommenderEvaluator(),split));
 
 	}
 
-	public void createLogLikeliHoodWithThreshold(final double threshold) {
+	public void createLogLikeliHoodWithThreshold(final double threshold,final double split) {
 		RecommenderBuilder userSimRecBuilder = new RecommenderBuilder() {
 			public Recommender buildRecommender(DataModel model) throws TasteException {
 
@@ -114,14 +114,14 @@ public class Evaluator {
 		};
 
 		System.out.println("LogLikelihoodSimilarity ----- ThresholdUserNeighborhood (" + threshold
-				+ ") -----RMSE ---> SCORE: " + evaluate(userSimRecBuilder, new RMSRecommenderEvaluator()));
+				+ ") ----- Split: "+split+ " RMSE ---> SCORE: " + evaluate(userSimRecBuilder, new RMSRecommenderEvaluator(),split));
 		System.out.println(
-				"LogLikelihoodSimilarity ----- ThresholdUserNeighborhood (" + threshold + ") -----MAE ---> SCORE: "
-						+ evaluate(userSimRecBuilder, new AverageAbsoluteDifferenceRecommenderEvaluator()));
+				"LogLikelihoodSimilarity ----- ThresholdUserNeighborhood (" + threshold + ") ----- Split: "+split+ " MAE ---> SCORE: "
+						+ evaluate(userSimRecBuilder, new AverageAbsoluteDifferenceRecommenderEvaluator(),split));
 
 	}
 
-	public void createUncenteredCosineWithNNN(final int nearestNeighbour) {
+	public void createUncenteredCosineWithNNN(final int nearestNeighbour,final double split) {
 		RecommenderBuilder userSimRecBuilder = new RecommenderBuilder() {
 			public Recommender buildRecommender(DataModel model) throws TasteException {
 
@@ -134,14 +134,14 @@ public class Evaluator {
 		};
 
 		System.out.println("UncenteredCosineSimilarity ----- NearestNUserNeighborhood (" + nearestNeighbour
-				+ ") -----RMSE ---> SCORE: " + evaluate(userSimRecBuilder, new RMSRecommenderEvaluator()));
+				+ ") ----- Split: "+split+ " RMSE ---> SCORE: " + evaluate(userSimRecBuilder, new RMSRecommenderEvaluator(),split));
 		System.out.println("UncenteredCosineSimilarity ----- NearestNUserNeighborhood (" + nearestNeighbour
-				+ ") -----MAE ---> SCORE: "
-				+ evaluate(userSimRecBuilder, new AverageAbsoluteDifferenceRecommenderEvaluator()));
+				+ ") ---------- Split: "+split+ " MAE ---> SCORE: "
+				+ evaluate(userSimRecBuilder, new AverageAbsoluteDifferenceRecommenderEvaluator(),split));
 		
 	}
 
-	public void createUncenteredCosineWithThreshold(final double threshold) {
+	public void createUncenteredCosineWithThreshold(final double threshold,final double split) {
 		RecommenderBuilder userSimRecBuilder = new RecommenderBuilder() {
 			public Recommender buildRecommender(DataModel model) throws TasteException {
 
@@ -154,10 +154,10 @@ public class Evaluator {
 		};
 
 		System.out.println("UncenteredCosineSimilarity ----- ThresholdUserNeighborhood (" + threshold
-				+ ") -----RMSE ---> SCORE: " + evaluate(userSimRecBuilder, new RMSRecommenderEvaluator()));
+				+ ") ----- Split: "+split+ " RMSE ---> SCORE: " + evaluate(userSimRecBuilder, new RMSRecommenderEvaluator(),split));
 		System.out.println(
-				"UncenteredCosineSimilarity ----- ThresholdUserNeighborhood (" + threshold + ") -----MAE ---> SCORE: "
-						+ evaluate(userSimRecBuilder, new AverageAbsoluteDifferenceRecommenderEvaluator()));
+				"UncenteredCosineSimilarity ----- ThresholdUserNeighborhood (" + threshold + ") ----- Split: "+split+ " -----MAE ---> SCORE: "
+						+ evaluate(userSimRecBuilder, new AverageAbsoluteDifferenceRecommenderEvaluator(),split));
 		
 	}
 }

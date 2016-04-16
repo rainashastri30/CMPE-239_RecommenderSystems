@@ -14,7 +14,7 @@ public class ConvertToCSV {
 	public static final String QUERY = "select * from content;";
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost/testOne";
-	static final String FILE_NAME = "data/content-based-mahout.csv";
+	static final String FILE_NAME = "data/content-based-dataset.csv";
 	public static final String COMMA_DELIMITER = ",";
 	public static final String NEW_LINE_SEPARATOR = "\n";
 
