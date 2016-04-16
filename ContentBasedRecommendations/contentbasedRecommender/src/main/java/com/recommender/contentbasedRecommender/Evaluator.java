@@ -1,4 +1,4 @@
-package com.recommender.collaberativeRecommender;
+package com.recommender.contentbasedRecommender;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +18,7 @@ import org.apache.mahout.cf.taste.impl.neighborhood.ThresholdUserNeighborhood;
 import org.apache.mahout.cf.taste.impl.recommender.GenericUserBasedRecommender;
 import org.apache.mahout.cf.taste.impl.similarity.LogLikelihoodSimilarity;
 import org.apache.mahout.cf.taste.impl.similarity.PearsonCorrelationSimilarity;
+import org.apache.mahout.cf.taste.impl.similarity.TanimotoCoefficientSimilarity;
 import org.apache.mahout.cf.taste.impl.similarity.UncenteredCosineSimilarity;
 import org.apache.mahout.cf.taste.model.DataModel;
 import org.apache.mahout.cf.taste.neighborhood.UserNeighborhood;
@@ -28,13 +29,13 @@ import org.apache.mahout.common.RandomUtils;
 
 public class Evaluator {
 
-	public static String recsFile = "data/pre-processed.csv";
+	public static String recsFile = "data/content-based-dataset.csv";
 
 	public void createPearsonCoefficientWithNNN(final int nearestNeighbour, final double split) {
 		RecommenderBuilder userSimRecBuilder = new RecommenderBuilder() {
 			public Recommender buildRecommender(DataModel model) throws TasteException {
 
-				UserSimilarity userSimilarity = new PearsonCorrelationSimilarity(model);
+				UserSimilarity userSimilarity = new TanimotoCoefficientSimilarity(model);
 				UserNeighborhood neighborhood = new NearestNUserNeighborhood(nearestNeighbour, userSimilarity, model);
 
 				Recommender recommender = new GenericUserBasedRecommender(model, neighborhood, userSimilarity);

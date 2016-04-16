@@ -1,4 +1,4 @@
-package com.recommender.collaberativeRecommender;
+package com.recommender.contentbasedRecommender;
 
 public class EvaluatorMain {
 
