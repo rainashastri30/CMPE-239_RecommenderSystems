@@ -31,7 +31,7 @@ public class UserBasedRecommender {
 		DataModel model;
 		try {
 			List<Long> movieList = new ArrayList<Long>();
-			model = new FileDataModel(new File("data/mahout-new-users-org-csv.csv"));
+			model = new FileDataModel(new File("data/additional-users-preprocessed.csv"));
 
 			UserSimilarity similarity = new PearsonCorrelationSimilarity(model);
 

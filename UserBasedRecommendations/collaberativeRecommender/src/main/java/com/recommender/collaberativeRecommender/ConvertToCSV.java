@@ -9,21 +9,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-LOAD DATA INFILE '/Users/rainashastri/Desktop/PRE-PROCESSED-CSV.csv' 
-INTO TABLE Ratings 
-FIELDS TERMINATED BY ',' 
-ENCLOSED BY '"'
-LINES TERMINATED BY '\n'
-IGNORE 1 ROWS;*/
 public class ConvertToCSV {
-	//public static final String QUERY = "select * from RatingsNewUsersORG";
-	public static final String QUERY = "select * from RatingsPreProcessed";
+	
+	
 	//public static final String QUERY = "select * from RatingsORG";
+	//public static final String QUERY = "select * from RatingsPreProcessed";
+	//public static final String QUERY = "select * from RatingsNewUsersORG";
+	public static final String QUERY = "select * from RatingsNewUsersPreProcessed";
+	
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost/testOne";
-	static final String FILE_NAME = "data/test-preprocessed.csv";
-	//static final String FILE_NAME = "data/mahout-org-csv.csv";
+	//static final String FILE_NAME = "data/org.csv";
+	//static final String FILE_NAME = "data/pre-processed.csv";
+	//static final String FILE_NAME = "data/additional-users-org.csv";
+	static final String FILE_NAME = "data/additional-users-preprocessed.csv";
 	public static final String COMMA_DELIMITER = ",";
 	public static final String NEW_LINE_SEPARATOR = "\n";
 
@@ -107,7 +106,7 @@ public class ConvertToCSV {
 				ratinglist.add(m);
 				m = new Model(rs.getInt("USERS"), 31, rs.getString("Zootopia"));
 				ratinglist.add(m);
-				m = new Model(rs.getInt("USERS"), 32, rs.getString("MI"));
+				m = new Model(rs.getInt("USERS"), 32, rs.getString("Mission Impossible"));
 				ratinglist.add(m);
 				m = new Model(rs.getInt("USERS"), 33, rs.getString("The martian"));
 				ratinglist.add(m);
